@@ -1,5 +1,5 @@
 var net = require('net');
-var client = net.connect({port: process.env.OPENSHIFT_NODEJS_PORT, host: process.env.OPENSHIFT_NODEJS_IP}, function() { //'connect' listener
+var client = net.connect({port: process.env.OPENSHIFT_NODEJS_PORT_TCP, host: process.env.OPENSHIFT_NODEJS_IP}, function() { //'connect' listener
   console.log('client connected');
   client.write('world!\r\n');
 });
