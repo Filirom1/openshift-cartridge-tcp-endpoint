@@ -45,8 +45,4 @@ Endpoints:
     Private-Port-Name: PORT
     Private-Port:      8080
     Public-Port-Name:  PROXY_PORT
-    Mappings:
-      - Frontend:      ""
-        Backend:       ""
-        Options:       { websocket: true }
-Source-Url: https://github.com/Filirom1/openshift-nodejs-simple/archive/master.zip
+    Options:           { "ssl_to_gear": true }

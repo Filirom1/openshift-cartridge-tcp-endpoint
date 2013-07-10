@@ -1,7 +1,12 @@
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write('Version: ' + JSON.stringify(process.versions, 0, 2)+ '\n');
-  res.write('Env: ' + JSON.stringify(process.env, 0, 2)+ '\n');
-  res.end('Hello World\n');
-}).listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP);
+var net = require('net');
+var client = net.connect({port: process.env.OPENSHIFT_NODEJS_PORT, host: process.env.OPENSHIFT_NODEJS_IP}, function() { //'connect' listener
+  console.log('client connected');
+  client.write('world!\r\n');
+});
+client.on('data', function(data) {
+  client.write(data.toString());
+});
+client.on('end', function() {
+  console.log('client disconnected');
+  client.end();
+});
